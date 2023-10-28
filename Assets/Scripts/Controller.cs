@@ -9,6 +9,13 @@ public class Controller : MonoBehaviour
     private Collider2D col;
 
     public float speed;
+
+    public float x;
+    public float y;
+
+    private Vector2 direction;
+    private Vector2 wallRight;
+    int randomValue = 0;
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -16,23 +23,35 @@ public class Controller : MonoBehaviour
     }
     protected virtual void Start()
     {
-        Vector2 force = new Vector2(Random.Range(-6, 6), Random.Range(-6, 6)) * speed;
-        rb.AddForce(force);
+        do
+        {
+            randomValue = Random.Range(-1, 2);
+        } while (randomValue == 0);
+        direction.x = randomValue;
+        do
+        {
+            randomValue = Random.Range(-1, 2);
+        } while (randomValue == 0);
+        direction.y = randomValue;
+    }
+
+    protected virtual void Update()
+    {
+        transform.Translate(direction * speed * Time.deltaTime);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            col.isTrigger = false;
             ApplyEffect();
-        }
-    }
-    protected virtual void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Wall"))
-        {
-            col.isTrigger = true;
+
+            Vector2 wallNormal = collision.transform.right;
+
+            Vector2 reflectedDirection = Vector2.Reflect(direction, wallNormal);
+
+            direction = reflectedDirection;
+
         }
     }
     protected virtual void ApplyEffect()

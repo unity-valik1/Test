@@ -47,7 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d298ca9c7c67f6744a7d9aed632de849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
+  speed: 3
+  x: 0
+  y: 0
   _img:
   - {fileID: -2413806693520163455, guid: 801ccc9303766f5459fc70d0d50b558a, type: 3}
   - {fileID: 7482667652216324306, guid: 1a473d40b9122a44abaee2b430a69b24, type: 3}
@@ -120,7 +122,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: c9bfc5380b6bf3842b4054ed6c481e8b, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
