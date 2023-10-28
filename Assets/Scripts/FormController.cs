@@ -15,7 +15,7 @@ public class FormController : Controller
     }
     protected override void ApplyEffect()
     {
-        int randomNumberImg = Random.Range(0, 3);
+        int randomNumberImg = Random.Range(0, _img.Length);
         spriteRenderer.sprite = _img[randomNumberImg];
     }
 }
